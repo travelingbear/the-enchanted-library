@@ -8,32 +8,37 @@ body {
     overflow-x: hidden;
 }
 
+.page-section {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease;
+    overflow-y: auto;
+}
+
+.page-section.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.page-section.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
 #background-container {
     position: fixed;
     top: 0; left: 0;
     width: 100vw; height: 100vh;
     z-index: -1;
     background-size: cover;
+    -webkit-background-size: cover;
     background-position: center;
-    transition: all 2s ease-in-out;
-}
-
-.page-transition {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.8s ease-out;
-}
-
-.page-transition.loaded {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-#content-container {
-    position: relative;
-    z-index: 1;
-    min-height: 100vh;
-    padding: 20px;
+    background-repeat: no-repeat;
+    transition: all 1s ease-in-out;
 }
 
 .text-container {
@@ -45,6 +50,7 @@ body {
     backdrop-filter: blur(5px);
     line-height: 1.8;
     font-size: 16px;
+    margin-top: 40px;
 }
 
 .text-container img {
@@ -56,22 +62,23 @@ body {
 }
 
 .chapter-controls {
-    position: fixed;
-    top: 20px;
-    right: 20px;
     display: flex;
     gap: 10px;
-    z-index: 100;
+    margin-bottom: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .chapter-controls button {
-    padding: 10px 15px;
+    padding: 12px 20px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background 0.3s;
+    font-size: 14px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.6);
 }
 
 .chapter-controls button:hover {
@@ -79,8 +86,8 @@ body {
 }
 
 .sound-effect {
-    display: inline-block;
-    margin: 6px 5px;
+    display: block;
+    margin: 20px auto;
     padding: 8px 12px;
     background: rgba(100, 100, 255, 0.3);
     border: 1px solid rgba(100, 100, 255, 0.5);
@@ -89,16 +96,12 @@ body {
     cursor: pointer;
     font-size: 12px;
     transition: all 0.2s ease;
+    text-align: center;
 }
 
 .sound-effect:hover {
     background: rgba(100, 100, 255, 0.5);
     transform: translateY(-1px);
-}
-
-p:has(.sound-effect) {
-    text-align: center;
-    margin: 15px 0;
 }
 
 #settings-panel {
@@ -133,18 +136,13 @@ p:has(.sound-effect) {
     color: white;
 }
 
-/* Index page styles */
-.index-page #background-container {
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-}
-
 .book-cover {
     display: flex;
     align-items: center;
     justify-content: center;
     min-height: 60vh;
     text-align: center;
-    padding: 40px 20px;
+    padding: 40px 10px;
 }
 
 .cover-content {
@@ -333,13 +331,13 @@ p:has(.sound-effect) {
     color: #ffed4e;
 }
 
-.text-container a {
+.text-container a, .chapter-link {
     color: #ffd700;
     text-decoration: none;
     transition: all 0.3s ease;
 }
 
-.text-container a:hover {
+.text-container a:hover, .chapter-link:hover {
     color: #ffed4e;
     text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
 }
@@ -371,26 +369,6 @@ p:has(.sound-effect) {
     border-radius: 50%;
 }
 
-.chapter-page #settings-btn {
-    padding: 2px;
-    border-radius: 5px;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.index-page #settings-toggle {
-    padding: 2px;
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 .text-container p {
     margin-bottom: 1em;
     line-height: 1.6;
@@ -401,12 +379,6 @@ p:has(.sound-effect) {
 
 .text-container p:last-child {
     margin-bottom: 0;
-}
-
-.sound-effect {
-    display: block;
-    margin: 20px auto;
-    text-align: center;
 }
 
 .bookmark-info {
@@ -444,27 +416,41 @@ p:has(.sound-effect) {
     color: #ffd700;
 }
 
-
-
 @media (max-width: 768px) {
     .text-container {
         padding: 20px;
         margin: 10px;
+        margin-top: 80px;
     }
     
     .chapter-controls {
         position: static;
         justify-content: center;
         margin-bottom: 20px;
+        padding: 5px 2px;
+    }
+    
+    .chapter-controls button {
+        padding: 6px 8px;
+        font-size: 12px;
+        margin: 0;
     }
     
     #settings-panel {
         position: fixed;
-        top: 50%;
+        top: 50px;
         left: 50%;
-        transform: translate(-50%, -50%);
+        transform: translateX(-50%);
         width: 90%;
         max-width: 300px;
+        max-height: 70vh;
+        overflow-y: auto;
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+    
+    #settings-panel.hidden {
+        transform: translateX(-50%) translateY(-100%);
     }
     
     .book-title {
@@ -484,70 +470,9 @@ p:has(.sound-effect) {
         margin: 20px 10px;
     }
     
-    .chapter-controls {
-        padding: 5px 2px;
-    }
-    
     .chapter-controls button {
-        padding: 6px 8px;
+        padding: 8px 8px;
         font-size: 12px;
-        margin: 0;
+        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
     }
-    
-    .text-container {
-        margin: 5px 2px;
-        padding: 20px 12px;
-    }
-    
-    .text-container p {
-        text-align: justify;
-        text-justify: inter-word;
-        hyphens: auto;
-    }
-    
-    #settings-panel {
-        position: fixed;
-        top: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 90%;
-        max-width: 300px;
-        max-height: 70vh;
-        overflow-y: auto;
-        z-index: 1001;
-        transition: all 0.3s ease;
-    }
-    
-    #settings-panel.hidden {
-        transform: translateX(-50%) translateY(-100%);
-    }
-}
-
-/* About Author Page Styling */
-.about-author-page #background-container {
-    background: #c3a982;
-}
-
-.about-author-page .text-container {
-    background: rgba(0, 0, 0, 0.8);
-    color: #ffffff;
-}
-
-.about-author-page .text-container h1,
-.about-author-page .text-container h2,
-.about-author-page .text-container h3 {
-    color: #ffffff;
-}
-
-.about-author-page .text-container em {
-    color: #cccccc;
-    font-style: italic;
-}
-    
-    .footnote-menu {
-        bottom: 10px;
-        right: 10px;
-    }
-    
-
 }

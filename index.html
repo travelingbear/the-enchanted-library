@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="styles.css">
     <meta name="theme-color" content="#000000">
 </head>
-<body class="index-page">
+<body>
     <div id="background-container"></div>
     
-    <div id="app">
+    <!-- Front Page -->
+    <div id="front-page" class="page-section active">
         <div class="book-cover">
             <div class="cover-content">
                 <h1 class="book-title">The Enchanted Library</h1>
-                <p class="book-author">by <a href="about-author.html" class="author-link">Francisco and Amazon Q</a></p>
+                <p class="book-author">by <a href="#about-author" class="author-link">Francisco and Amazon Q</a></p>
                 <p class="book-description">A young scholar discovers a magical library that exists between worlds</p>
             </div>
         </div>
@@ -23,25 +24,21 @@
         <nav class="chapter-nav">
             <h2>Begin Your Journey</h2>
             <div class="chapter-grid">
-                <a href="chapter-1.html" class="chapter-card">
+                <a href="#chapter-1" class="chapter-card" data-chapter="1">
                         <span class="chapter-number">Chapter 1</span>
                         <span class="chapter-title">discovery</span>
-                    </a><a href="chapter-2.html" class="chapter-card">
+                    </a><a href="#chapter-2" class="chapter-card" data-chapter="2">
                         <span class="chapter-number">Chapter 2</span>
                         <span class="chapter-title">guardian</span>
-                    </a><a href="chapter-3.html" class="chapter-card">
+                    </a><a href="#chapter-3" class="chapter-card" data-chapter="3">
                         <span class="chapter-number">Chapter 3</span>
                         <span class="chapter-title">choice</span>
-                    </a><a href="chapter-4.html" class="chapter-card">
+                    </a><a href="#chapter-4" class="chapter-card" data-chapter="4">
                         <span class="chapter-number">Chapter 4</span>
                         <span class="chapter-title">epilogue</span>
                     </a>
             </div>
         </nav>
-        
-        <div class="settings-button-container">
-            <button id="settings-toggle">⚙️</button>
-        </div>
         
         <div id="bookmark-info" class="bookmark-info hidden">
             <p>You were reading:</p>
@@ -51,15 +48,54 @@
         </div>
     </div>
     
+    <!-- Chapter Container -->
+    <div id="chapter-container" class="page-section hidden">
+        <main class="text-container">
+            <nav class="chapter-controls">
+                <button id="back-btn">← Back</button>
+                <button id="bookmark-btn">🔖 Bookmark</button>
+                <button id="home-btn">🏠 Home</button>
+                <button id="next-btn">Next →</button>
+            </nav>
+            <div id="chapter-content">
+                <!-- Chapter content loaded here -->
+            </div>
+        </main>
+    </div>
+    
+    <!-- About Author Page -->
+    <div id="about-author-page" class="page-section hidden">
+        <main class="text-container">
+            <nav class="chapter-controls">
+                <button id="about-home-btn">🏠 Home</button>
+            </nav>
+            <div id="about-content">
+                <!-- About content loaded here -->
+            </div>
+        </main>
+    </div>
+    
+    <div class="settings-button-container">
+        <button id="settings-toggle">⚙️</button>
+    </div>
+    
     <div id="settings-panel" class="hidden">
         <div class="settings-header">
             <h3>Settings</h3>
             <button onclick="document.getElementById('settings-panel').classList.add('hidden')" class="close-btn">&times;</button>
         </div>
-        <label>🎵 Music: <button id="music-toggle" class="toggle-btn">ON</button></label>
-        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="50"></label>
+        <label>🎵 Music: 
+            <select id="music-mode">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+                <option value="chapter-disabled">Disabled for this chapter</option>
+            </select>
+        </label>
+        <label>Music Loop: <button id="music-loop" class="toggle-btn">ON</button></label>
+        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="10"></label>
         <label>🔊 Effects: <button id="effects-toggle" class="toggle-btn">ON</button></label>
-        <label>Effects Volume: <input type="range" id="effects-volume" min="0" max="100" value="70"></label>
+        <label>Effects Volume: <input type="range" id="effects-volume" min="0" max="100" value="20"></label>
+        <label>Auto-bookmark: <button id="auto-bookmark" class="toggle-btn">OFF</button></label>
         <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
         <label>Font Family: 
             <select id="font-family">
@@ -73,12 +109,13 @@
         <hr>
         <div class="version-info">
             <p><strong>The Enchanted Library</strong></p>
-            <p>Version: 1.0.32</p>
+            <p>Version: 1.0.40</p>
             <p>By: Francisco and Amazon Q</p>
         </div>
     </div>
     
-
+    <audio id="background-music"></audio>
+    <audio id="sound-effect"></audio>
     
     <script src="app.js"></script>
 </body>

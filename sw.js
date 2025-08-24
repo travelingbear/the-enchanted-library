@@ -1,11 +1,11 @@
 
-const CACHE_NAME = 'sound-novel-v1';
+const CACHE_NAME = 'sound-novel-spa-v1';
 const urlsToCache = [
     './',
     './index.html',
     './styles.css',
     './app.js',
-    './chapter.js'
+    './chapters.json'
 ];
 
 self.addEventListener('install', event => {
