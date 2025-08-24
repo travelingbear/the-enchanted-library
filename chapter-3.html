@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter - The Enchanted Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="chapter-page" data-chapter="3">
+    <div id="background-container"></div>
+    
+    <div id="content-container">
+        <nav class="chapter-controls">
+            <button id="back-btn">← Back</button>
+            <button id="bookmark-btn">🔖 Bookmark</button>
+            <button id="home-btn">🏠 Home</button>
+            <button id="settings-btn">⚙️</button>
+            <button id="next-btn">→ Next</button>
+        </nav>
+        
+        <main class="text-container page-transition">
+            <h1>Chapter 3: The Choice</h1>
+<div class="music-change" data-src="assets/music/decision-theme.mp3" data-title="Decision Theme"></div>
+
+<p>Elena stared at the Guardian, her mind struggling to process everything she had witnessed. The rational part of her insisted this was all an elaborate hallucination, but the scholar in her recognized truth when she encountered it.</p>
+<p>&quot;How do you know my name?&quot; she asked.</p>
+<p>&quot;The Library knows all who enter,&quot; Theron replied. &quot;It has been waiting for you, Elena. Your research into lost medieval texts, your theories about forgotten knowledge—you&#39;ve been preparing for this moment your entire academic career.&quot;</p>
+<p><button class="sound-effect" data-src="assets/sounds/pages-turning.wav" data-title="Pages Turning">🔊 Pages Turning</button></p>
+<p>Around them, books began opening themselves, their pages fluttering as if caught in an invisible wind. Words in languages Elena had never seen before glowed on the ancient parchment.</p>
+<p><img src="assets/images/characters/elena-reading.jpg" alt="Ancient Texts"></p>
+<p>&quot;I can read them,&quot; Elena whispered in amazement, watching as the foreign symbols transformed into meaning in her mind. &quot;These are... these are the lost works. The missing pieces of history.&quot;</p>
+<p>&quot;Knowledge seeks knowledge,&quot; Theron said. &quot;But with great understanding comes great responsibility. The Library offers you a choice, Elena Vasquez.&quot;</p>
+<div class="pause" data-duration="2"></div>
+
+<p>The Guardian gestured to three different sections of the vast library:</p>
+<div class="bg-change" data-src="assets/images/backgrounds/three-paths.jpg" data-title="Three Paths"></div>
+
+<p>&quot;The Path of Return—go back to your world with the memory of this place intact, but never able to return. Continue your research with the knowledge that magic exists, but unable to prove it.&quot;</p>
+<p><button class="sound-effect" data-src="assets/sounds/wind-soft.wav" data-title="Soft Wind">🔊 Soft Wind</button></p>
+<p>&quot;The Path of the Scholar—remain here as my apprentice, learning the secrets of all worlds, but leaving your old life behind forever.&quot;</p>
+<p><button class="sound-effect" data-src="assets/sounds/mystical-resonance.wav" data-title="Mystical Resonance">🔊 Mystical Resonance</button></p>
+<p>&quot;Or the Path of the Bridge—return to your world, but carry with you the ability to access the Library when humanity needs its wisdom most. Become a guardian of knowledge in your own realm.&quot;</p>
+<p>Elena felt the weight of the decision pressing down on her. Each path offered something precious, but demanded a sacrifice in return.</p>
+<div class="auto-sound" data-src="assets/sounds/heartbeat.wav" data-title="Heartbeat"></div>
+
+<p>Her heart pounded as she considered her options. Behind her lay everything she had ever known—her research, her career, her ordinary but comfortable life. Before her lay infinite knowledge and responsibility beyond imagination.</p>
+<p>&quot;What would you choose?&quot; she asked Theron.</p>
+<p>The Guardian smiled sadly. &quot;I chose the Path of the Scholar long ago. I have seen the rise and fall of civilizations, witnessed the birth of stars and the death of gods. But I have also been alone for millennia, watching from between the worlds.&quot;</p>
+<div class="pause" data-duration="3"></div>
+
+<p>Elena closed her eyes and listened to the whispers of the floating books, the gentle chimes of accumulated wisdom, the soft breathing of knowledge itself.</p>
+<div class="auto-sound" data-src="assets/sounds/decision-moment.wav" data-title="Decision Moment"></div>
+
+<p>When she opened them again, her decision was clear.</p>
+<p>&quot;I choose the Path of the Bridge.&quot;</p>
+<p><button class="sound-effect" data-src="assets/sounds/transformation.wav" data-title="Magical Transformation">🔊 Magical Transformation</button></p>
+<p>The Library around her began to glow with brilliant light, and Elena felt something fundamental change within her—a new awareness, a connection to the infinite repository of knowledge that would remain with her always.</p>
+<div class="bg-change" data-src="assets/images/backgrounds/bright-light.jpg" data-title="Transformation Light"></div>
+
+<p>&quot;Then go, Bridge-Walker,&quot; Theron said, his voice fading as the light intensified. &quot;And remember—knowledge shared is knowledge multiplied.&quot;</p>
+<hr>
+<p><strong>End of Chapter 3</strong></p>
+<p><em>Epilogue: <a href="chapter-4.html">The Return</a></em></p>
+
+        </main>
+    </div>
+    
+    <div id="settings-panel" class="hidden">
+        <h3>Reading Settings</h3>
+        <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
+        <label>Font Family: 
+            <select id="font-family">
+                <option value="serif">Serif</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="monospace">Monospace</option>
+            </select>
+        </label>
+        <label>Text Color: <input type="color" id="text-color" value="#ffffff"></label>
+        <label>Background Opacity: <input type="range" id="bg-opacity" min="0" max="100" value="80"></label>
+        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="50"></label>
+        <label>Background Music: 
+            <select id="music-mode">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+                <option value="disabled-chapter">Disabled for this chapter</option>
+            </select>
+        </label>
+        <label><input type="checkbox" id="music-loop"> Loop background music</label>
+        <label><input type="checkbox" id="auto-bookmark"> Auto-bookmark pages</label>
+    </div>
+    
+    <audio id="background-music"></audio>
+    <audio id="sound-effect"></audio>
+    
+    <script src="chapter.js"></script>
+</body>
+</html>

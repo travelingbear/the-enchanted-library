@@ -1,0 +1,451 @@
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: 'Georgia', serif;
+    background: #000;
+    color: #fff;
+    overflow-x: hidden;
+}
+
+#background-container {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    z-index: -1;
+    background-size: cover;
+    background-position: center;
+    transition: all 2s ease-in-out;
+}
+
+.page-transition {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.8s ease-out;
+}
+
+.page-transition.loaded {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#content-container {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.text-container {
+    max-width: 800px;
+    margin: 0 auto;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border-radius: 10px;
+    backdrop-filter: blur(5px);
+    line-height: 1.8;
+    font-size: 16px;
+}
+
+.text-container img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+.chapter-controls {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    display: flex;
+    gap: 10px;
+    z-index: 100;
+}
+
+.chapter-controls button {
+    padding: 10px 15px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.chapter-controls button:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.sound-effect {
+    display: inline-block;
+    margin: 6px 5px;
+    padding: 8px 12px;
+    background: rgba(100, 100, 255, 0.3);
+    border: 1px solid rgba(100, 100, 255, 0.5);
+    border-radius: 15px;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    transition: all 0.2s ease;
+}
+
+.sound-effect:hover {
+    background: rgba(100, 100, 255, 0.5);
+    transform: translateY(-1px);
+}
+
+p:has(.sound-effect) {
+    text-align: center;
+    margin: 15px 0;
+}
+
+#settings-panel {
+    position: fixed;
+    top: 70px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    z-index: 200;
+    min-width: 250px;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+#settings-panel.hidden { display: none; }
+
+#settings-panel label {
+    display: block;
+    margin: 10px 0;
+    font-size: 14px;
+}
+
+#settings-panel input, #settings-panel select {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px;
+    border-radius: 3px;
+    border: 1px solid #555;
+    background: #333;
+    color: white;
+}
+
+/* Index page styles */
+.index-page #background-container {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+}
+
+.book-cover {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.cover-content {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 60px 40px;
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    max-width: 600px;
+}
+
+.book-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.book-author {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #ccc;
+    font-style: italic;
+}
+
+.author-link {
+    color: #ffd700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.author-link:hover {
+    color: #ffed4e;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.book-description {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #ddd;
+    margin-bottom: 0;
+}
+
+.chapter-nav {
+    padding: 40px 20px;
+    text-align: center;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(10px);
+    margin: 20px auto;
+    max-width: 800px;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.chapter-nav h2 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    color: #ffd700;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.chapter-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    max-width: 720px;
+    margin: 0 auto;
+}
+
+.chapter-card {
+    display: block;
+    background: rgba(0, 0, 0, 0.7);
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-decoration: none;
+    color: white;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.chapter-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(255, 215, 0, 0.2);
+}
+
+.chapter-number {
+    display: block;
+    font-size: 0.9rem;
+    color: #ffd700;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+.chapter-title {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: capitalize;
+}
+
+.settings-button-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 100;
+}
+
+.settings-button-container button {
+    padding: 12px 20px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.settings-button-container button:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.toggle-btn {
+    padding: 4px 12px;
+    background: rgba(255, 215, 0, 0.2);
+    color: white;
+    border: 1px solid rgba(255, 215, 0, 0.5);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 12px;
+    margin-left: 10px;
+}
+
+.toggle-btn:hover {
+    background: rgba(255, 215, 0, 0.3);
+}
+
+.version-info {
+    text-align: center;
+    margin-top: 15px;
+    color: #ccc;
+}
+
+.version-info p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+.version-info strong {
+    color: #ffd700;
+}
+
+#settings-panel hr {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 15px 0;
+}
+
+.clickable-sound {
+    color: #ffd700;
+    cursor: pointer;
+    text-decoration: underline;
+    text-decoration-style: dotted;
+    transition: all 0.3s ease;
+}
+
+.clickable-sound:hover {
+    color: #ffed4e;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
+.clickable-sound[data-playing="true"] {
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    color: #ffed4e;
+}
+
+.text-container p {
+    margin-bottom: 1em;
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.text-container p:last-child {
+    margin-bottom: 0;
+}
+
+.sound-effect {
+    display: block;
+    margin: 20px auto;
+    text-align: center;
+}
+
+.bookmark-info {
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 600px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+.bookmark-info button {
+    margin: 10px;
+    padding: 12px 24px;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid rgba(255, 215, 0, 0.3);
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+.bookmark-info button:hover {
+    background: rgba(255, 215, 0, 0.1);
+    border-color: rgba(255, 215, 0, 0.6);
+    transform: translateY(-2px);
+}
+
+.bookmark-chapter-title {
+    font-size: 1.1rem;
+    margin: 10px 0 15px 0;
+    color: #ffd700;
+}
+
+
+
+@media (max-width: 768px) {
+    .text-container {
+        padding: 20px;
+        margin: 10px;
+    }
+    
+    .chapter-controls {
+        position: static;
+        justify-content: center;
+        margin-bottom: 20px;
+    }
+    
+    #settings-panel {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 90%;
+        max-width: 300px;
+    }
+    
+    .book-title {
+        font-size: 2rem;
+    }
+    
+    .cover-content {
+        padding: 40px 20px;
+    }
+    
+    .chapter-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .chapter-nav,
+    .bookmark-info {
+        margin: 20px 10px;
+    }
+}
+
+/* About Author Page Styling */
+.about-author-page #background-container {
+    background: #c3a982;
+}
+
+.about-author-page .text-container {
+    background: rgba(0, 0, 0, 0.8);
+    color: #ffffff;
+}
+
+.about-author-page .text-container h1,
+.about-author-page .text-container h2,
+.about-author-page .text-container h3 {
+    color: #ffffff;
+}
+
+.about-author-page .text-container em {
+    color: #cccccc;
+    font-style: italic;
+}
+    
+    .footnote-menu {
+        bottom: 10px;
+        right: 10px;
+    }
+    
+
+}

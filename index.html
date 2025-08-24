@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Enchanted Library</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="theme-color" content="#000000">
+</head>
+<body class="index-page">
+    <div id="background-container"></div>
+    
+    <div id="app">
+        <div class="book-cover">
+            <div class="cover-content">
+                <h1 class="book-title">The Enchanted Library</h1>
+                <p class="book-author">by <a href="about-author.html" class="author-link">Francisco and Amazon Q</a></p>
+                <p class="book-description">A young scholar discovers a magical library that exists between worlds</p>
+            </div>
+        </div>
+        
+        <nav class="chapter-nav">
+            <h2>Begin Your Journey</h2>
+            <div class="chapter-grid">
+                <a href="chapter-1.html" class="chapter-card">
+                        <span class="chapter-number">Chapter 1</span>
+                        <span class="chapter-title">discovery</span>
+                    </a><a href="chapter-2.html" class="chapter-card">
+                        <span class="chapter-number">Chapter 2</span>
+                        <span class="chapter-title">guardian</span>
+                    </a><a href="chapter-3.html" class="chapter-card">
+                        <span class="chapter-number">Chapter 3</span>
+                        <span class="chapter-title">choice</span>
+                    </a><a href="chapter-4.html" class="chapter-card">
+                        <span class="chapter-number">Chapter 4</span>
+                        <span class="chapter-title">epilogue</span>
+                    </a>
+            </div>
+        </nav>
+        
+        <div class="settings-button-container">
+            <button id="settings-toggle">⚙️ Settings</button>
+        </div>
+        
+        <div id="bookmark-info" class="bookmark-info hidden">
+            <p>You were reading:</p>
+            <p class="bookmark-chapter-title"><strong id="bookmark-chapter"></strong></p>
+            <button id="continue-reading">Continue Reading</button>
+            <button id="clear-bookmark">Clear Bookmark</button>
+        </div>
+    </div>
+    
+    <div id="settings-panel" class="hidden">
+        <h3>Settings</h3>
+        <label>🎵 Music: <button id="music-toggle" class="toggle-btn">ON</button></label>
+        <label>🔊 Effects: <button id="effects-toggle" class="toggle-btn">ON</button></label>
+        <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
+        <label>Font Family: 
+            <select id="font-family">
+                <option value="serif">Serif</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="monospace">Monospace</option>
+            </select>
+        </label>
+        <label>Text Color: <input type="color" id="text-color" value="#ffffff"></label>
+        <label>Background Opacity: <input type="range" id="bg-opacity" min="0" max="100" value="80"></label>
+        <hr>
+        <div class="version-info">
+            <p><strong>The Enchanted Library</strong></p>
+            <p>Version: 1.0.25</p>
+            <p>By: Francisco and Amazon Q</p>
+        </div>
+    </div>
+    
+
+    
+    <script src="app.js"></script>
+</body>
+</html>

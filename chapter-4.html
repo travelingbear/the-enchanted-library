@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter - The Enchanted Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="chapter-page" data-chapter="4">
+    <div id="background-container"></div>
+    
+    <div id="content-container">
+        <nav class="chapter-controls">
+            <button id="back-btn">← Back</button>
+            <button id="bookmark-btn">🔖 Bookmark</button>
+            <button id="home-btn">🏠 Home</button>
+            <button id="settings-btn">⚙️</button>
+            <button id="next-btn">→ Next</button>
+        </nav>
+        
+        <main class="text-container page-transition">
+            <h1>Epilogue: The Return</h1>
+<div class="bg-change" data-src="assets/images/backgrounds/university-library.jpg" data-title="University Library"></div>
+<div class="music-change" data-src="assets/music/peaceful-resolution.mp3" data-title="Peaceful Resolution"></div>
+
+<p>Elena found herself back in the basement of Whitmore Hall, standing before an ordinary wooden door that led to a storage closet filled with old maintenance equipment. Her flashlight beam revealed nothing more magical than dusty shelves and forgotten cleaning supplies.</p>
+<p>But the knowledge remained.</p>
+<p><button class="sound-effect" data-src="assets/sounds/footsteps-stairs.wav" data-title="Footsteps on Stairs">🔊 Footsteps on Stairs</button></p>
+<p>She climbed the stairs slowly, her mind processing the incredible experience. To anyone else, it would seem like a vivid dream or hallucination brought on by too many late nights in the library. But Elena could feel the connection—a warm presence in the back of her mind that whispered of infinite possibilities.</p>
+<p><img src="assets/images/characters/elena-modern.jpg" alt="Elena in Modern Library"></p>
+<p>Six months later, Dr. Elena Vasquez published a groundbreaking paper on medieval manuscript preservation that revolutionized the field. Her techniques seemed to come from nowhere, but they worked with unprecedented success.</p>
+<p><button class="sound-effect" data-src="assets/sounds/typing.wav" data-title="Typing">🔊 Typing</button></p>
+<p>Late at night, when the university library was empty, Elena would sometimes feel the familiar tingle of magic in the air. Books would seem to glow faintly on the shelves, and she would know exactly which volume contained the answer to whatever question plagued her research.</p>
+<div class="pause" data-duration="2"></div>
+
+<p>Her students often remarked on her uncanny ability to find obscure references and make connections that others missed. They didn&#39;t know that sometimes, when Elena touched an ancient text, she could hear the whispers of the Eternal Library guiding her understanding.</p>
+<div class="bg-change" data-src="assets/images/backgrounds/classroom.jpg" data-title="Elena Teaching"></div>
+
+<p>&quot;Knowledge is not meant to be hoarded,&quot; she would tell her classes, echoing Theron&#39;s words. &quot;It&#39;s meant to be shared, to grow, to illuminate the darkness of ignorance wherever it may be found.&quot;</p>
+<p><button class="sound-effect" data-src="assets/sounds/students-talking.wav" data-title="Students Murmuring">🔊 Students Murmuring</button></p>
+<p>And sometimes, late at night when she was alone with her research, Elena would smile and whisper a quiet &quot;thank you&quot; to the space between worlds, knowing that somewhere in the Eternal Library, a Guardian was listening.</p>
+<div class="pause" data-duration="3"></div>
+
+<p>The magic was real. The knowledge was infinite. And Elena Vasquez had become exactly what the world needed—a bridge between the possible and the impossible, between the known and the unknowable.</p>
+<p><button class="sound-effect" data-src="assets/sounds/magic-chimes.wav" data-title="Magical Chimes">🔊 Magical Chimes</button></p>
+<p>The story was just beginning.</p>
+<hr>
+<p><strong>THE END</strong></p>
+<p><em>Thank you for reading &quot;The Enchanted Library&quot;</em>
+<em>A demonstration of the Simple Sound Novel Framework</em></p>
+
+        </main>
+    </div>
+    
+    <div id="settings-panel" class="hidden">
+        <h3>Reading Settings</h3>
+        <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
+        <label>Font Family: 
+            <select id="font-family">
+                <option value="serif">Serif</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="monospace">Monospace</option>
+            </select>
+        </label>
+        <label>Text Color: <input type="color" id="text-color" value="#ffffff"></label>
+        <label>Background Opacity: <input type="range" id="bg-opacity" min="0" max="100" value="80"></label>
+        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="50"></label>
+        <label>Background Music: 
+            <select id="music-mode">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+                <option value="disabled-chapter">Disabled for this chapter</option>
+            </select>
+        </label>
+        <label><input type="checkbox" id="music-loop"> Loop background music</label>
+        <label><input type="checkbox" id="auto-bookmark"> Auto-bookmark pages</label>
+    </div>
+    
+    <audio id="background-music"></audio>
+    <audio id="sound-effect"></audio>
+    
+    <script src="chapter.js"></script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chapter - The Enchanted Library</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="chapter-page" data-chapter="2">
+    <div id="background-container"></div>
+    
+    <div id="content-container">
+        <nav class="chapter-controls">
+            <button id="back-btn">← Back</button>
+            <button id="bookmark-btn">🔖 Bookmark</button>
+            <button id="home-btn">🏠 Home</button>
+            <button id="settings-btn">⚙️</button>
+            <button id="next-btn">→ Next</button>
+        </nav>
+        
+        <main class="text-container page-transition">
+            <h1>Chapter 2: The Guardian</h1>
+<div class="music-change" data-src="assets/music/mystical-encounter.mp3" data-title="Mystical Encounter"></div>
+
+<p>Elena stepped cautiously into the impossible library, her footsteps muffled by what appeared to be clouds drifting across the floor. <span class="clickable-sound" data-src="assets/sounds/whispers.wav">The air shimmered with golden dust motes that sparkled like tiny stars.</span>.</p>
+<p><center>"Welcome, seeker of knowledge."</center></p>
+
+<p>The voice seemed to come from everywhere and nowhere at once. Elena spun around, her heart racing, but saw only the endless rows of floating books.</p>
+<p>&quot;Who&#39;s there?&quot; she called out, surprised by how steady her voice sounded.</p>
+<p>A figure materialized from between the shelves—tall, ethereal, with silver hair that moved as if underwater and eyes that held the depth of centuries.</p>
+<p><img src="assets/images/characters/guardian.jpg" alt="The Guardian"></p>
+<p>&quot;I am Theron, Guardian of the Eternal Library,&quot; the figure said, his voice carrying the weight of ages. &quot;You have found your way to the space between worlds, where all knowledge that ever was or ever will be is preserved.&quot;</p>
+<p>Elena&#39;s academic mind raced. &quot;This is impossible. Libraries don&#39;t exist between worlds. Magic isn&#39;t real.&quot;</p>
+<p><span class="clickable-sound" data-src="assets/sounds/ethereal-laugh.wav">Theron&#39;s laughter</span> was like wind chimes in a gentle breeze. &quot;Your world has forgotten much, young scholar. But you... you still remember how to see.&quot;</p>
+<div class="pause" data-duration="3"></div>
+
+<p>He gestured to the floating books around them. &quot;Every story ever told, every secret ever whispered, every truth ever discovered—all of it lives here. But knowledge without wisdom is dangerous.&quot;</p>
+<div class="bg-change" data-src="assets/images/backgrounds/library-depths.jpg" data-title="Library Depths"></div>
+<div class="auto-sound" data-src="assets/sounds/mystical-transition.wav" data-title="Mystical Transition"></div>
+
+<p>The scene around them shifted, revealing deeper chambers filled with books that pulsed with different colored lights—some warm and golden, others cold and blue, and a few that flickered with an ominous red glow.</p>
+<p>&quot;The red ones,&quot; Elena whispered, drawn to their forbidden allure.</p>
+<p>&quot;Contain knowledge that destroyed civilizations,&quot; Theron warned. &quot;Power without understanding. Secrets that should remain buried.&quot;</p>
+<p><button class="sound-effect" data-src="assets/sounds/warning-bell.wav" data-title="Warning Bell">🔊 Warning Bell</button></p>
+<p>A distant bell tolled, its sound carrying an unmistakable note of warning.</p>
+<p>&quot;But you didn&#39;t come here by accident, Elena Vasquez. The Library calls only to those who are meant to find it. The question is: what will you do with what you discover?&quot;</p>
+<hr>
+<p><strong>End of Chapter 2</strong></p>
+<p><em>Next: <a href="chapter-3.html">Chapter 3: The Choice</a></em></p>
+
+        </main>
+    </div>
+    
+    <div id="settings-panel" class="hidden">
+        <h3>Reading Settings</h3>
+        <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
+        <label>Font Family: 
+            <select id="font-family">
+                <option value="serif">Serif</option>
+                <option value="sans-serif">Sans-serif</option>
+                <option value="monospace">Monospace</option>
+            </select>
+        </label>
+        <label>Text Color: <input type="color" id="text-color" value="#ffffff"></label>
+        <label>Background Opacity: <input type="range" id="bg-opacity" min="0" max="100" value="80"></label>
+        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="50"></label>
+        <label>Background Music: 
+            <select id="music-mode">
+                <option value="enabled">Enabled</option>
+                <option value="disabled">Disabled</option>
+                <option value="disabled-chapter">Disabled for this chapter</option>
+            </select>
+        </label>
+        <label><input type="checkbox" id="music-loop"> Loop background music</label>
+        <label><input type="checkbox" id="auto-bookmark"> Auto-bookmark pages</label>
+    </div>
+    
+    <audio id="background-music"></audio>
+    <audio id="sound-effect"></audio>
+    
+    <script src="chapter.js"></script>
+</body>
+</html>
