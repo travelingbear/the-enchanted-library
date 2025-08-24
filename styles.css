@@ -253,25 +253,29 @@ p:has(.sound-effect) {
 
 .settings-button-container {
     position: fixed;
-    top: 20px;
-    right: 20px;
+    top: 10px;
+    right: 10px;
     z-index: 100;
 }
 
 .settings-button-container button {
-    padding: 12px 20px;
+    padding: 2px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
-    border: 2px solid rgba(255, 215, 0, 0.3);
-    border-radius: 25px;
+    border: none;
+    border-radius: 50%;
     cursor: pointer;
     transition: all 0.3s ease;
     font-size: 1rem;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .settings-button-container button:hover {
     background: rgba(255, 215, 0, 0.1);
-    border-color: rgba(255, 215, 0, 0.6);
     transform: translateY(-2px);
 }
 
@@ -314,8 +318,8 @@ p:has(.sound-effect) {
 .clickable-sound {
     color: #ffd700;
     cursor: pointer;
-    text-decoration: underline;
-    text-decoration-style: dotted;
+    text-decoration: none;
+    border-bottom: none;
     transition: all 0.3s ease;
 }
 
@@ -329,10 +333,59 @@ p:has(.sound-effect) {
     color: #ffed4e;
 }
 
+.settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    color: #ffd700;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-btn:hover {
+    color: #ffed4e;
+    background: rgba(255, 215, 0, 0.1);
+    border-radius: 50%;
+}
+
+.chapter-page #settings-btn {
+    padding: 2px;
+    border-radius: 5px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-page #settings-toggle {
+    padding: 2px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .text-container p {
     margin-bottom: 1em;
     line-height: 1.6;
     text-align: justify;
+    text-justify: inter-word;
+    hyphens: auto;
 }
 
 .text-container p:last-child {
@@ -418,6 +471,44 @@ p:has(.sound-effect) {
     .chapter-nav,
     .bookmark-info {
         margin: 20px 10px;
+    }
+    
+    .chapter-controls {
+        padding: 5px 2px;
+    }
+    
+    .chapter-controls button {
+        padding: 6px 8px;
+        font-size: 12px;
+        margin: 0;
+    }
+    
+    .text-container {
+        margin: 5px 2px;
+        padding: 20px 12px;
+    }
+    
+    .text-container p {
+        text-align: justify;
+        text-justify: inter-word;
+        hyphens: auto;
+    }
+    
+    #settings-panel {
+        position: fixed;
+        top: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+        max-width: 300px;
+        max-height: 70vh;
+        overflow-y: auto;
+        z-index: 1001;
+        transition: all 0.3s ease;
+    }
+    
+    #settings-panel.hidden {
+        transform: translateX(-50%) translateY(-100%);
     }
 }
 

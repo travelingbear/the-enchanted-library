@@ -4,6 +4,8 @@ class IndexApp {
         this.settings = {
             musicEnabled: true,
             effectsEnabled: true,
+            musicVolume: 50,
+            effectsVolume: 70,
             fontSize: 16,
             fontFamily: 'serif',
             textColor: '#ffffff',

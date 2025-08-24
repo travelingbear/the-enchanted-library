@@ -40,7 +40,7 @@
         </nav>
         
         <div class="settings-button-container">
-            <button id="settings-toggle">⚙️ Settings</button>
+            <button id="settings-toggle">⚙️</button>
         </div>
         
         <div id="bookmark-info" class="bookmark-info hidden">
@@ -52,9 +52,14 @@
     </div>
     
     <div id="settings-panel" class="hidden">
-        <h3>Settings</h3>
+        <div class="settings-header">
+            <h3>Settings</h3>
+            <button onclick="document.getElementById('settings-panel').classList.add('hidden')" class="close-btn">&times;</button>
+        </div>
         <label>🎵 Music: <button id="music-toggle" class="toggle-btn">ON</button></label>
+        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="50"></label>
         <label>🔊 Effects: <button id="effects-toggle" class="toggle-btn">ON</button></label>
+        <label>Effects Volume: <input type="range" id="effects-volume" min="0" max="100" value="70"></label>
         <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
         <label>Font Family: 
             <select id="font-family">
@@ -68,7 +73,7 @@
         <hr>
         <div class="version-info">
             <p><strong>The Enchanted Library</strong></p>
-            <p>Version: 1.0.25</p>
+            <p>Version: 1.0.32</p>
             <p>By: Francisco and Amazon Q</p>
         </div>
     </div>

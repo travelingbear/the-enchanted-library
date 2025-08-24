@@ -5,6 +5,7 @@ class SoundNovelApp {
             musicEnabled: true,
             effectsEnabled: true,
             musicVolume: 50,
+            effectsVolume: 70,
             musicMode: 'enabled',
             musicLoop: false,
             autoBookmark: false,
@@ -99,7 +100,8 @@ class SoundNovelApp {
             'font-family': 'fontFamily', 
             'text-color': 'textColor',
             'bg-opacity': 'bgOpacity',
-            'music-volume': 'musicVolume'
+            'music-volume': 'musicVolume',
+            'effects-volume': 'effectsVolume'
         };
         
         Object.entries(controls).forEach(([id, setting]) => {
@@ -109,10 +111,12 @@ class SoundNovelApp {
                 element.addEventListener('change', (e) => {
                     this.updateSetting(setting, e.target.value);
                     if (setting === 'musicVolume') this.updateMusicVolume();
+                    if (setting === 'effectsVolume') this.updateEffectsVolume();
                 });
                 element.addEventListener('input', (e) => {
                     this.updateSetting(setting, e.target.value);
                     if (setting === 'musicVolume') this.updateMusicVolume();
+                    if (setting === 'effectsVolume') this.updateEffectsVolume();
                 });
             }
         });
@@ -316,6 +320,13 @@ class SoundNovelApp {
         }
     }
     
+    updateEffectsVolume() {
+        const audio = document.getElementById('sound-effect');
+        if (audio) {
+            audio.volume = this.settings.effectsVolume / 100;
+        }
+    }
+    
     updateMusicPlayback() {
         const audio = document.getElementById('background-music');
         if (audio) {
@@ -385,6 +396,7 @@ class SoundNovelApp {
         const audio = document.getElementById('sound-effect');
         if (audio) {
             audio.src = src;
+            audio.volume = this.settings.effectsVolume / 100;
             audio.play().catch(console.error);
         }
     }
@@ -394,6 +406,7 @@ class SoundNovelApp {
             const audio = document.getElementById('sound-effect');
             if (audio) {
                 audio.src = src;
+                audio.volume = this.settings.effectsVolume / 100;
                 audio.play().catch(console.error);
             }
         }
@@ -410,6 +423,7 @@ class SoundNovelApp {
             span.style.textShadow = '';
         } else {
             audio.src = span.dataset.src;
+            audio.volume = this.settings.effectsVolume / 100;
             audio.play().catch(console.error);
             span.dataset.playing = 'true';
             span.style.textShadow = '0 0 10px rgba(255, 215, 0, 0.8)';
