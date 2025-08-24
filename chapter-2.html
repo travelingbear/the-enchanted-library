@@ -20,7 +20,8 @@
         
         <main class="text-container page-transition">
             <h1>Chapter 2: The Guardian</h1>
-<div class="music-change" data-src="assets/music/mystical-encounter.mp3" data-title="Mystical Encounter"></div>
+<!--<div class="music-change" data-src="assets/music/mystical-encounter.mp3" data-title="Mystical Encounter"></div>-->
+<div class="music-change" data-src="assets/music/mysterious-library.mp3" data-title="Mysterious Ambience"></div>
 
 <p>Elena stepped cautiously into the impossible library, her footsteps muffled by what appeared to be clouds drifting across the floor. <span class="clickable-sound" data-src="assets/sounds/whispers.wav">The air shimmered with golden dust motes that sparkled like tiny stars.</span>.</p>
 <p><center>"Welcome, seeker of knowledge."</center></p>
@@ -52,7 +53,10 @@
     </div>
     
     <div id="settings-panel" class="hidden">
-        <h3>Reading Settings</h3>
+        <div class="settings-header">
+            <h3>Reading Settings</h3>
+            <button onclick="document.getElementById('settings-panel').classList.add('hidden')" class="close-btn">&times;</button>
+        </div>
         <label>Font Size: <input type="range" id="font-size" min="12" max="24" value="16"></label>
         <label>Font Family: 
             <select id="font-family">
@@ -63,8 +67,8 @@
         </label>
         <label>Text Color: <input type="color" id="text-color" value="#ffffff"></label>
         <label>Background Opacity: <input type="range" id="bg-opacity" min="0" max="100" value="80"></label>
-        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="50"></label>
-        <label>Effects Volume: <input type="range" id="effects-volume" min="0" max="100" value="70"></label>
+        <label>Music Volume: <input type="range" id="music-volume" min="0" max="100" value="10"></label>
+        <label>Effects Volume: <input type="range" id="effects-volume" min="0" max="100" value="20"></label>
         <label>Background Music: 
             <select id="music-mode">
                 <option value="enabled">Enabled</option>

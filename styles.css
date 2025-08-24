@@ -333,6 +333,17 @@ p:has(.sound-effect) {
     color: #ffed4e;
 }
 
+.text-container a {
+    color: #ffd700;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.text-container a:hover {
+    color: #ffed4e;
+    text-shadow: 0 0 5px rgba(255, 215, 0, 0.5);
+}
+
 .settings-header {
     display: flex;
     justify-content: space-between;

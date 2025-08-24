@@ -4,8 +4,8 @@ class SoundNovelApp {
         this.settings = {
             musicEnabled: true,
             effectsEnabled: true,
-            musicVolume: 50,
-            effectsVolume: 70,
+            musicVolume: 10,
+            effectsVolume: 20,
             musicMode: 'enabled',
             musicLoop: false,
             autoBookmark: false,
@@ -48,9 +48,16 @@ class SoundNovelApp {
     
     loadMusicSecond(callback) {
         const firstMusic = document.querySelector('.music-change');
+        const musicStop = document.querySelector('.music-stop');
         
-        if (firstMusic && this.shouldPlayMusic()) {
+        if (musicStop) {
+            // Stop command found, stop any music
+            this.stopMusic();
+        } else if (firstMusic && this.shouldPlayMusic()) {
             this.changeMusic(firstMusic.dataset.src);
+        } else {
+            // Check for persistent music from previous chapter
+            this.checkPersistentMusic();
         }
         
         setTimeout(callback, 300);
@@ -71,6 +78,20 @@ class SoundNovelApp {
     }
     
     setupEventListeners() {
+        // Handle pending music on user interaction (Chrome autoplay policy)
+        document.addEventListener('click', () => {
+            if (this.pendingMusic) {
+                const audio = document.getElementById('background-music');
+                if (audio) {
+                    audio.src = this.pendingMusic;
+                    this.updateMusicVolume();
+                    this.updateMusicLoop();
+                    audio.play().catch(console.error);
+                    this.pendingMusic = null;
+                }
+            }
+        }, { once: true });
+        
         // Settings panel
         const settingsBtn = document.getElementById('settings-btn');
         const settingsPanel = document.getElementById('settings-panel');
@@ -211,6 +232,14 @@ class SoundNovelApp {
             observer.observe(el);
         });
         
+        // Music stop commands - execute immediately, don't wait for scroll
+        document.querySelectorAll('.music-stop').forEach(el => {
+            if (!el.dataset.triggered) {
+                this.stopMusic();
+                el.dataset.triggered = 'true';
+            }
+        });
+        
         // Auto sound effects
         document.querySelectorAll('.auto-sound').forEach(el => {
             const observer = new IntersectionObserver((entries) => {
@@ -250,11 +279,20 @@ class SoundNovelApp {
         const audio = document.getElementById('background-music');
         if (audio && this.shouldPlayMusic()) {
             const fullSrc = new URL(src, window.location.href).href;
+            const currentMusic = sessionStorage.getItem('currentMusic');
+            
             if (audio.src !== fullSrc) {
-                audio.src = src;
-                this.updateMusicVolume();
-                this.updateMusicLoop();
-                audio.play().catch(console.error);
+                if (currentMusic && currentMusic !== src && !audio.paused) {
+                    // Crossfade to new music
+                    this.crossfadeMusic(src);
+                } else {
+                    // Direct change or first load
+                    audio.src = src;
+                    this.updateMusicVolume();
+                    this.updateMusicLoop();
+                    audio.play().catch(console.error);
+                }
+                sessionStorage.setItem('currentMusic', src);
             }
         }
     }
@@ -349,6 +387,85 @@ class SoundNovelApp {
             if (this.settings.musicLoop && audio.paused && audio.src && this.shouldPlayMusic()) {
                 audio.currentTime = 0;
                 audio.play().catch(console.error);
+            }
+        }
+    }
+    
+    checkPersistentMusic() {
+        const currentMusic = sessionStorage.getItem('currentMusic');
+        const audio = document.getElementById('background-music');
+        
+        if (currentMusic && audio && this.shouldPlayMusic()) {
+            // Continue playing music from previous chapter
+            audio.src = currentMusic;
+            this.updateMusicVolume();
+            this.updateMusicLoop();
+            
+            // Handle Chrome autoplay policy
+            const playPromise = audio.play();
+            if (playPromise !== undefined) {
+                playPromise.catch(error => {
+                    console.log('Autoplay prevented, user interaction required:', error);
+                    // Store that we want to play this music when user interacts
+                    this.pendingMusic = currentMusic;
+                });
+            }
+        }
+    }
+    
+    crossfadeMusic(newSrc) {
+        const audio = document.getElementById('background-music');
+        const originalVolume = this.settings.musicVolume / 100;
+        
+        // Fade out current music
+        const fadeOut = setInterval(() => {
+            if (audio.volume > 0.05) {
+                audio.volume -= 0.05;
+            } else {
+                clearInterval(fadeOut);
+                
+                // Switch to new music
+                audio.src = newSrc;
+                audio.volume = 0;
+                this.updateMusicLoop();
+                audio.play().catch(console.error);
+                
+                // Fade in new music
+                const fadeIn = setInterval(() => {
+                    if (audio.volume < originalVolume - 0.05) {
+                        audio.volume += 0.05;
+                    } else {
+                        audio.volume = originalVolume;
+                        clearInterval(fadeIn);
+                    }
+                }, 50);
+            }
+        }, 50);
+    }
+    
+    stopMusic() {
+        const audio = document.getElementById('background-music');
+        if (audio) {
+            if (!audio.paused) {
+                const fadeOut = setInterval(() => {
+                    if (audio.volume > 0.05) {
+                        audio.volume -= 0.05;
+                    } else {
+                        clearInterval(fadeOut);
+                        audio.pause();
+                        audio.currentTime = 0;
+                        audio.src = '';
+                        sessionStorage.removeItem('currentMusic');
+                        sessionStorage.removeItem('musicTime');
+                    }
+                }, 50);
+            } else {
+                // Audio is already paused, just clear state
+                audio.pause();
+                audio.currentTime = 0;
+                audio.src = '';
+                sessionStorage.removeItem('currentMusic');
+                sessionStorage.removeItem('musicTime');
             }
         }
     }
@@ -475,6 +592,13 @@ class SoundNovelApp {
     }
     
     smoothNavigate(url) {
+        // Store current music state for next page
+        const audio = document.getElementById('background-music');
+        if (audio && audio.src && !audio.paused) {
+            sessionStorage.setItem('currentMusic', audio.src);
+            sessionStorage.setItem('musicTime', audio.currentTime.toString());
+        }
+        
         // Add fade out effect before navigation
         const textContainer = document.querySelector('.text-container');
         if (textContainer) {

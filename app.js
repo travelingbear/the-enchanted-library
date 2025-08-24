@@ -4,8 +4,8 @@ class IndexApp {
         this.settings = {
             musicEnabled: true,
             effectsEnabled: true,
-            musicVolume: 50,
-            effectsVolume: 70,
+            musicVolume: 10,
+            effectsVolume: 20,
             fontSize: 16,
             fontFamily: 'serif',
             textColor: '#ffffff',
@@ -172,17 +172,21 @@ class IndexApp {
                 
                 if (continueBtn) {
                     continueBtn.addEventListener('click', () => {
+                        // Clear persistent music when returning to story
+                        sessionStorage.removeItem('currentMusic');
+                        sessionStorage.removeItem('musicTime');
                         window.location.href = `chapter-${chapter}.html`;
                     });
                 }
-                
-
                 
                 const clearBtn = document.getElementById('clear-bookmark');
                 if (clearBtn) {
                     clearBtn.addEventListener('click', () => {
                         if (confirm('Are you sure you want to clear your bookmark?')) {
                             document.cookie = 'bookmark=; max-age=0; path=/';
+                            // Clear persistent music state
+                            sessionStorage.removeItem('currentMusic');
+                            sessionStorage.removeItem('musicTime');
                             bookmarkInfo.classList.add('hidden');
                             bookmarkInfo.style.display = 'none';
                             // Hide elements immediately
@@ -203,6 +207,10 @@ class IndexApp {
                     });
                 }
             }
+        } else {
+            // No bookmark, clear any persistent music state
+            sessionStorage.removeItem('currentMusic');
+            sessionStorage.removeItem('musicTime');
         }
     }
     
